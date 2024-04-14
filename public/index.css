@@ -1,0 +1,148 @@
+footer{
+    background-color: rgb(240, 240, 240);
+}
+
+*{
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.bb{
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+button{
+    color: rgba(13,110,253,255);
+    border: none;
+    border-radius: 50px;
+    padding: 2% 4%;
+    background-color: white;
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition: all 0.3s ease
+}
+
+button:hover{
+    background-color: rgba(13,110,253,255);
+    color: white;
+}
+
+ul li{
+    transition: all 0.3s ease;
+}
+
+.navbar-collapse{
+    align-items: center;
+    text-align: center;
+}
+
+.sec{
+    margin: 5% 0%;
+}
+
+.sec1,.sec2{
+    padding: 0% 3%;
+}
+
+.web-footer{
+    padding: 5% 5%;
+}
+
+.footer-logo{
+    margin-bottom: 3%;
+}
+
+.foo3{
+    text-align: center;
+}
+.uu{
+    margin-left: 3%;
+    text-decoration: none;
+}
+
+.uu:hover{
+    color: rgba(13,110,253,255);
+}
+
+/* Signin */
+
+.signin{
+    padding: 5% 0%;
+}
+
+.signin h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.signin p{
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.signin form{
+    margin: 5% 0%;
+}
+
+.signin input{
+    width: 100%;
+    padding: 2% 5%;
+    margin: 2% 0%;
+    border: 1px solid rgba(13,110,253,255);
+    border-radius: 50px;
+}
+
+.signin button{
+    width: 100%;
+    padding: 2% 5%;
+    margin: 2% 0%;
+    border: 1px solid rgba(13,110,253,255);
+    border-radius: 50px;
+}
+
+.signin button:hover{
+    background-color: rgba(13,110,253,255);
+    color: white;
+}
+
+#loginbtn{
+    color: rgba(13,110,253,255);
+    border: none;
+    border-radius: 50px;
+    padding: 2% 4%;
+    background-color: white;
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition: all 0.3s ease
+}
+
+#loginbtn:hover{
+    background-color: rgba(13,110,253,255);
+    color: white;
+}
+
+#signupbtn{
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 2% 4%;
+    background-color: rgba(13,110,253,255);
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    transition: all 0.3s ease;
+
+}
+
+#signupbtn:hover{
+    background-color: white;
+    color: rgba(13,110,253,255);
+}
+
+
