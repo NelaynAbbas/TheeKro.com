@@ -9,5 +9,6 @@ app.use("/",require(path.join(__dirname,"routes/index.js")))
 
 app.use("/signin.html",require(path.join(__dirname,"routes/signin.js")))
 app.use("/signup.html",require(path.join(__dirname,"routes/signup.js")))
+app.use("/forgotpassword .html",require(path.join(__dirname,"routes/forget.js")))
 
 app.listen(3000);
