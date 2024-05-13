@@ -190,16 +190,8 @@ function signupregex()
     }
     else
     {
-        
-        document.getElementById("name").style.borderColor = "green";
-        document.getElementById("email").style.borderColor = "green";
-        document.getElementById("password").style.borderColor = "green";
-        document.getElementById("confirmPassword").style.borderColor = "green";
-        document.getElementById("phone").style.borderColor = "green";
-        document.getElementById("address").style.borderColor = "green";
-        document.getElementById("city").style.borderColor = "green";
-        document.getElementById("country").style.borderColor = "green";
-        return true;
+        document.getElementById("form1").submit();
+        console.log("form1")
     }
 
 }

@@ -6,27 +6,12 @@ const UserModel = require("./models/users.models")
 const mongoose = require("mongoose")
 const { Schema } = mongoose;
 
+const app = express()
+const port = 3000
+
 mongoose.connect('mongodb+srv://nelaynabbas5:SnQs6PEUoVHFHAbZ@theekro.qukcde7.mongodb.net/?retryWrites=true&w=majority&appName=Theekro')
 .then(() => console.log('MongoDB connected…'))
 .catch(err => console.log("err"))
-
-const schema = new Schema({
-    id: String,
-    name:String,
-    email:String,
-    password: String,
-    phone: String,
-    address: String,
-    city: String,
-    country: String
-  });
-  const Model = mongoose.model('Test', schema);
-  const doc = new Model();
-  
-  doc.save();
-
-const app = express()
-const port = 3000
 
 app.set('view engine', 'ejs');
 
