@@ -24,14 +24,14 @@ router.post('/', async (req, res) => {
             // User already exists
             console.log("User Already Exists");
             // Send a response indicating user existence
-            return res.status(409).json({ message: "User already exists." });
+            res.redirect("usernotfound");
         } else {
             // User doesn't exist, proceed with registration
             console.log("NEW USER");
 
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             
-            
+
 
 
 
