@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -7,20 +7,9 @@ const userSchema = new Schema({
     email:String,
     password: String,
     phone: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    country: {
-        type: String,
-        required: true
-    }
+    address: String,
+    city: String,
+    country: String
 })
 
 
