@@ -44,10 +44,5 @@ function signinregex()
         document.getElementById("passholder").textContent="Password must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters";
         return false;
     }
-    else
-    {
-        alert("Sign in successful");
-        return true;
-    }
     
 }
