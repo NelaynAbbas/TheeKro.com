@@ -52,11 +52,11 @@
         <div class="row no-gutters d-flex justify-content-center align-items-center">
             <div class="col-12 col-md-6 col-lg-6 py-5">
                 <div class="container-fluid">
-                    <h1 class="display-4">Email Verification</h1>
-                    <form >
+                    <h1 class="display-4">Enter OTP</h1>
+                    <form action="/signup/emailverify" method="post">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="">
+                            <label for="email" class="form-label">OTP</label>
+                            <input type="number" class="form-control" id="otp" name="otp" aria-describedby="emailHelp" placeholder="">
                             <div id="emailHelp" class="form-text">
                                 We'll never share your email with anyone else.
                             </div>

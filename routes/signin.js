@@ -21,10 +21,13 @@ router.post('/',async (req,res)=>{
             console.log(searched.password)
             bcrypt.compare(pass,searched.password).then(result =>{
                 if(result){
-                    console.log("LOGIN")
+                    res.redirect("/userdashboard");
                 }
                 else{
-                    console.log("NOT LOGIN")
+                    res.json({
+                        status:"FAILED",
+                        message:"INVALID CREDENTIALS"
+                    })
                 }
                 
             })

@@ -7,11 +7,13 @@ const EmailVerification = require("../models/emailverify.model");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
+const otpStorage = {}
+
 let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "dsacs2009@gmail.com",
-        pass: "polataxi69",
+        user: process.env.AUTH_EMAIL,
+        pass: process.env.AUTH_PASS,
     },
 });
 
@@ -21,70 +23,111 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, phone, address, city, country } = req.body;
+        const { name, email, password, phone, address, city, country } = req.body;
 
         const searched = await UserModel.findOne({ email });
 
         if (searched) {
             console.log("User Already Exists");
-            // return res.redirect("usernotfound");
+            return res.redirect("usernotfound");
         }
 
         console.log("NEW USER");
 
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const otp = generateOTP();
 
-        const newUser = new UserModel({
-            id: Date.now().toString(),
-            name,
-            email,
-            password: hashedPassword,
-            phone,
-            address,
-            city,
-            country,
-            verified: false
-        });
+        otpStorage[otp] = { name, email, password, phone, address, city, country };
 
-        await newUser.save();
+        sendOTP(email, otp);
+        
+        res.render('emailverify', { name, email, password, phone, address, city, country });
 
-        await sendOTP(newUser._id, newUser.email, res);
+        
+        // const newUser = new UserModel({
+        //     id: Date.now().toString(),
+        //     name,
+        //     email,
+        //     password: hashedPassword,
+        //     phone,
+        //     address,
+        //     city,
+        //     country,
+        //     verified: false
+        // });
+
+        // await newUser.save();
+
+        // await sendOTP(newUser._id, newUser.email, res);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Internal server error." });
     }
 });
 
-const sendOTP = async (_id, email, res) => {
-    try {
-        const otp = Math.floor(1000 + Math.random() * 9000);
-        const hashedOTP = await bcrypt.hash(otp.toString(), 10);
+async function sendOTP(email, otp) {
 
-        const mailOptions = {
-            from: "dsacs2009@gmail.com",
-            to: email,
-            subject: "Verify Your Email",
-            html: `<p>Enter <b>${otp}</b> in the app to verify your email and complete the signup.</p><p>This code expires in <b>1 Hour.</b></p>`
-        };
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'f219133@cfd.nu.edu.pk',
+            pass: 'razzaq@12345',
+        },
+    });
 
-        const newEmailVerification = new EmailVerification({
-            userId: _id,
-            otp: hashedOTP,
-            createdAt: Date.now(),
-            expiresAt: Date.now() + 3600000
-        });
 
-        await newEmailVerification.save();
-        await transporter.sendMail(mailOptions);
+    const mailOptions = {
+        from: 'f219133@cfd.nu.edu.pk',
+        to: email,
+        subject: 'Verification OTP',
+        text: `Your OTP for email verification is: ${otp}`,
+    };
 
-        res.json({
-            userId: _id,
-            email,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Error sending OTP email." });
+    await transporter.sendMail(mailOptions);
+}
+
+function generateOTP() {
+    return Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
+}
+
+
+//Email Verify Code
+router.get('/emailverify',(req,res)=>{
+    res.render(path.join(__dirname,"../Views/emailverify.ejs"))
+    
+})
+
+router.post('/emailverify', async (req, res) => {
+    
+    const { otp } = req.body;
+    const userData = otpStorage[otp];
+    console.log("User data is ", userData)
+    if (!userData) {
+        const error = "Invalid OTP";
+        res.redirect(`/signup`)
     }
-};
+
+    try {
+        const saltRounds = 10;
+        const hash = await bcrypt.hash(userData.password, saltRounds);
+
+        const newUser = new UserModel({
+            name: userData.name,
+            email: userData.email,
+            phone: userData.phone,
+            address: userData.address,
+            city: userData.city,
+            country: userData.country,
+            password: hash
+        });
+        console.log("Iam before save")
+        console.log("user data before saving is : ", newUser)
+        await newUser.save();
+
+        res.redirect('/signin');
+    } catch (error) {
+        console.error('Error saving user data:', error);
+        res.status(500).send('Error saving user data');
+    }
+})
 
 module.exports = router;

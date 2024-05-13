@@ -23,8 +23,7 @@ app.use("/",require(path.join(__dirname,"routes/index.js")))
 app.use("/signin",require(path.join(__dirname,"routes/signin.js")))
 app.use("/signup",require(path.join(__dirname,"routes/signup.js")))
 app.use("/forgotpassword",require(path.join(__dirname,"routes/forget.js")))
-app.use("/emailverify",require(path.join(__dirname,"routes/emailverify.js")))
 app.use("/usernotfound",require(path.join(__dirname,"routes/usernotfound.js")))
-
+app.use("/userdashboard",require(path.join(__dirname,"routes/userdashboard.js")))
 
 app.listen(3000);
