@@ -1,6 +1,6 @@
 ## Theekro.com
 <a name="readme-top"></a>
-#Theek Kro
+# Theek Kro
 <p>Welcome to Theekro.com, your one-stop platform for on-demand home services. Whether you need a skilled plumber to fix a leak, a licensed electrician for wiring upgrades, or a certified technician for appliance repairs, we connect you with the right professional for the job. Create a free account, browse through our extensive range of services, and book with confidence knowing that all our providers are vetted and experienced. Your home maintenance needs, simplified.</p>
 
 
