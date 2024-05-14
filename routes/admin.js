@@ -5,5 +5,7 @@ const bcrypt = require("bcrypt")
 const AdminModel = require("../models/admin.model")
 
 router.get('/',(req,res)=>{
-    res.render(path.join(__dirname,"../Views/admin.ejs"))
+    res.render(path.join(__dirname,"../Views/admindashboard.ejs"))
 })
+
+module.exports = router
