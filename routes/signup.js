@@ -5,7 +5,11 @@ const bcrypt = require("bcrypt");
 const UserModel = require("../models/users.models");
 const EmailVerification = require("../models/emailverify.model");
 const nodemailer = require("nodemailer");
+const userSession = require("../models/session.model");
+const UserSession = require("../models/session.model");
 require("dotenv").config();
+
+
 
 const otpStorage = {}
 
@@ -23,7 +27,7 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, password, phone, address, city, country } = req.body;
+        const { name, email, password, phone, work, address, city, country } = req.body;
 
         const searched = await UserModel.findOne({ email });
 
@@ -36,11 +40,11 @@ router.post('/', async (req, res) => {
 
         const otp = generateOTP();
 
-        otpStorage[otp] = { name, email, password, phone, address, city, country };
+        otpStorage[otp] = { name, email, password, phone, work, address, city, country };
 
         sendOTP(email, otp);
         
-        res.render('emailverify', { name, email, password, phone, address, city, country });
+        res.render('emailverify', { name, email, password, phone, work, address, city, country });
 
         
         // const newUser = new UserModel({
@@ -69,14 +73,14 @@ async function sendOTP(email, otp) {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'f219133@cfd.nu.edu.pk',
-            pass: 'razzaq@12345',
+            user: 'f219142@cfd.nu.edu.pk',
+            pass: 'aaxa pxae tihb zbos',
         },
     });
 
 
     const mailOptions = {
-        from: 'f219133@cfd.nu.edu.pk',
+        from: 'f219142@cfd.nu.edu.pk',
         to: email,
         subject: 'Verification OTP',
         text: `Your OTP for email verification is: ${otp}`,
@@ -114,14 +118,28 @@ router.post('/emailverify', async (req, res) => {
             name: userData.name,
             email: userData.email,
             phone: userData.phone,
+            work: userData.work,
             address: userData.address,
             city: userData.city,
             country: userData.country,
             password: hash
         });
+
+        const newSession = new UserSession({
+            name: userData.name,
+            email: userData.email,
+            phone: userData.phone,
+            work: userData.work,
+            address: userData.address,
+            city: userData.city,
+            country: userData.country,
+            password: hash
+        })
+
         console.log("Iam before save")
         console.log("user data before saving is : ", newUser)
         await newUser.save();
+        await newSession.save();
 
         res.redirect('/signin');
     } catch (error) {

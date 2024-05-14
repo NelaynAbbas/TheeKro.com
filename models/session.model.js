@@ -7,6 +7,7 @@ const userSession = new Schema({
     email: String,
     password: String,
     phone: String,
+    work: String,
     address: String,
     city: String,
     country: String,

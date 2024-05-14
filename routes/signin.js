@@ -12,7 +12,6 @@ router.post('/',async (req,res)=>{
     try {
         const em = req.body.email;
         const pass = req.body.password
-
         // Asynchronously search for the user
         const searched = await UserModel.findOne({ "email": em });
 
@@ -21,7 +20,16 @@ router.post('/',async (req,res)=>{
             console.log(searched.password)
             bcrypt.compare(pass,searched.password).then(result =>{
                 if(result){
-                    res.redirect("/userdashboard");
+                    res.render("userdashboard.ejs", { 
+                        name: searched.name, 
+                        email: searched.email, 
+                        password: searched.password, 
+                        phone: searched.phone, 
+                        work: searched.work, 
+                        address: searched.address, 
+                        city: searched.city, 
+                        country: searched.country 
+                    });
                 }
                 else{
                     res.json({

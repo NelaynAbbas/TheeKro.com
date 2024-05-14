@@ -59,23 +59,29 @@
                         <div class="row py-5 m-3">
                             <div class="col-12 py-2">
                                 <img src="/images/logo.png" alt="user" class="rounded-circle" width="150" height="150" style="background-color: white;" >
+                                <input type="file" name="photoadd" id="photoadd">
                             </div>
-                            <div class="col-12 py-2">
-                                <p class="dashboardname"><strong>Abdullah Grewal</strong></p>
+                            <div class="col-12 py-2 name">
+                                <p class="dashboardname"><strong>
+                                    <% if (name) { %>
+                                        <%= name %>
+                                    <% } %>
+                                </strong></p>
                             </div>
-                            <div class="col-12 py-2">
+                            <div class="col-12 py-2 email">
                                 <p class="dashboardemail">
-                                    abc@xyz.com
+                                    <% if (email) { %>
+                                        <%= email %>
+                                    <% } %>
                                 </p>
                             </div>
 
-                            <div class="col-5 m-3" id="dashboardpasswordid">
-                                <p class="dashboardpassword">Password</p>
-                                <button class="btn btn-primary" id="signupbtn">Change Password</button>
-                            </div>
-                            <div class="col-5 m-3" id="dashboardphoneid">
-                                <p class="dashboardphone">Phone</p>
-                                <button class="btn btn-primary" id="signupbtn">Change Phone</button>
+                            <div class="col-5 m-3 password" id="dashboardphoneid">
+                                <p class="dashboardphone">
+                                    <% if (phone) { %>
+                                        <%= phone %>
+                                    <% } %>
+                                </p>
                             </div>
 
                             
@@ -86,18 +92,26 @@
 
                         <div class="row py-5">
                             <div class="col-4">
-                                <p class="dashboardaddress">Address</p>
+                                <p class="dashboardaddress">
+                                    <% if (address) { %>
+                                        <%= address %>
+                                    <% } %>
+                                </p>
                                 
                             </div>
                             <div class="col-4">
-                                <p class="dashboardcity">City</p>
+                                <p class="dashboardcity">
+                                    <% if (city) { %>
+                                        <%= city %>
+                                    <% } %>
+                                </p>
                             </div>
                             <div class="col-4">
-                                <p class="dashboardcountry">Country</p>
-                            </div>
-
-                            <div class="col-12 py-2">
-                                <button class="btn btn-primary" id="loginbtn">Edit Address</button>
+                                <p class="dashboardcountry">
+                                    <% if (country) { %>
+                                        <%= country %>
+                                    <% } %>
+                                </p>
                             </div>
 
                         </div>
