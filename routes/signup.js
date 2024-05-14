@@ -9,17 +9,7 @@ const userSession = require("../models/session.model");
 const UserSession = require("../models/session.model");
 require("dotenv").config();
 
-
-
 const otpStorage = {}
-
-let transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: process.env.AUTH_EMAIL,
-        pass: process.env.AUTH_PASS,
-    },
-});
 
 router.get('/', (req, res) => {
     res.render(path.join(__dirname, "../Views/signup.ejs"));
